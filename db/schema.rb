@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008211835) do
+ActiveRecord::Schema.define(version: 20131017132832) do
+
+  create_table "expressions", force: true do |t|
+    t.string   "name"
+    t.string   "key"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -25,6 +33,15 @@ ActiveRecord::Schema.define(version: 20131008211835) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "structures", force: true do |t|
+    t.integer  "formattable_id"
+    t.string   "formattable_type"
+    t.string   "pattern"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

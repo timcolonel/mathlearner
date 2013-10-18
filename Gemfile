@@ -59,3 +59,5 @@ gem 'json'
 gem 'whenever'
 
 gem 'squeel'
+
+gem 'thin'

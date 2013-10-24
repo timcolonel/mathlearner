@@ -1,0 +1,8 @@
+<div><%= expr.text %></div>
+<div>
+  <ul>
+    <% expr.sub_expressions.each do |sub_expr| %>
+        <li><%= sub_expr.expression %> : <%= render 'show_expr', :expr => sub_expr %></li>
+    <% end %>
+  </ul>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017132832) do
+ActiveRecord::Schema.define(version: 20131024163033) do
 
   create_table "expressions", force: true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20131017132832) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "helper"
   end
 
   create_table "rails_admin_histories", force: true do |t|

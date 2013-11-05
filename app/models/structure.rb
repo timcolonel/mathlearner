@@ -5,4 +5,5 @@ class Structure < ActiveRecord::Base
   def to_s
     pattern.to_s
   end
+
 end

@@ -5,5 +5,5 @@
     <%= text_field_tag 'query', @query %>
     <%= submit_tag 'Parse' %>
 <% end %>
-Regular expressions : <%= @parsed.expression %>
-<%= render 'show_expr', :expr => @parsed %>
+Parsed:
+<%= @parsed %>

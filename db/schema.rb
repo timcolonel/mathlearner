@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105013951) do
+ActiveRecord::Schema.define(version: 20131119170746) do
+
+  create_table "algorithms", force: true do |t|
+    t.string   "name"
+    t.string   "input"
+    t.string   "output"
+    t.integer  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "element_match_elements", force: true do |t|
+    t.integer "element_id"
+    t.integer "match_id"
+  end
+
+  add_index "element_match_elements", ["element_id"], name: "index_element_match_elements_on_element_id", using: :btree
+  add_index "element_match_elements", ["match_id"], name: "index_element_match_elements_on_match_id", using: :btree
 
   create_table "elements", force: true do |t|
     t.string   "name"
@@ -19,6 +36,7 @@ ActiveRecord::Schema.define(version: 20131105013951) do
     t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pattern"
   end
 
   create_table "expressions", force: true do |t|
@@ -28,6 +46,23 @@ ActiveRecord::Schema.define(version: 20131105013951) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "helper"
+  end
+
+  create_table "functions", force: true do |t|
+    t.string   "name"
+    t.string   "pattern"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "display_name"
+  end
+
+  create_table "operators", force: true do |t|
+    t.string   "name"
+    t.string   "display_name"
+    t.string   "pattern"
+    t.integer  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rails_admin_histories", force: true do |t|

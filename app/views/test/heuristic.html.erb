@@ -1,0 +1,12 @@
+<% @comparaisons.each do |c, l| %>
+    <div>
+      <div><%= c %></div>
+      <div>
+        <ul>
+          <% l.each do |k, v| %>
+            <li> <%= k %> - <%= v %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+<% end %>

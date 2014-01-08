@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  value: MyString
+  parent_id: 
+  condition: false
+  algorithm_id: 
+
+two:
+  value: MyString
+  parent_id: 
+  condition: false
+  algorithm_id: 

@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119170746) do
+ActiveRecord::Schema.define(version: 20140107174142) do
+
+  create_table "algorithm_sources", force: true do |t|
+    t.text     "content"
+    t.integer  "algorithm_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "algorithm_sources", ["algorithm_id"], name: "index_algorithm_sources_on_algorithm_id", using: :btree
 
   create_table "algorithms", force: true do |t|
     t.string   "name"
-    t.string   "input"
-    t.string   "output"
     t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,6 +85,18 @@ ActiveRecord::Schema.define(version: 20131119170746) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
+  create_table "steps", force: true do |t|
+    t.string   "value"
+    t.integer  "parent_id"
+    t.boolean  "output"
+    t.integer  "algorithm_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "steps", ["algorithm_id"], name: "index_steps_on_algorithm_id", using: :btree
+  add_index "steps", ["parent_id"], name: "index_steps_on_parent_id", using: :btree
+
   create_table "structures", force: true do |t|
     t.integer  "formattable_id"
     t.string   "formattable_type"
@@ -85,6 +104,22 @@ ActiveRecord::Schema.define(version: 20131119170746) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+  end
+
+  create_table "test_heuristic_data", force: true do |t|
+    t.string   "value"
+    t.integer  "final_id"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "test_heuristic_data", ["final_id"], name: "index_test_heuristic_data_on_final_id", using: :btree
+
+  create_table "test_heuristic_data_finals", force: true do |t|
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

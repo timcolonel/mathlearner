@@ -3,6 +3,10 @@ Mathlearner::Application.routes.draw do
   root 'welcome#index'
   devise_for :users
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  get 'algorithm/use' => 'algorithm#use', :as => :use_algorithm
+  get 'algorithm/new' => 'algorithm#new', :as => :new_algorithm
+  get 'test/heuristic' => 'test#heuristic', :as => :test_heuristic
+  post 'algorithm/new' => 'algorithm#create', :as => :create_algorithm
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.
 
@@ -43,7 +47,7 @@ Mathlearner::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

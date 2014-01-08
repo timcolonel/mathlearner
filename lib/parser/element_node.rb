@@ -18,5 +18,17 @@ module Parser
     def to_readable
       value.to_s
     end
+
+    #Helper function
+    def function
+      nil
+    end
+
+    def is_element?
+      true
+    end
+    def is_function?
+      false
+    end
   end
 end

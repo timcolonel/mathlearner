@@ -14,3 +14,5 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require_tree .
+#= require ace/ace
+#= require ace/mode-javascript.js

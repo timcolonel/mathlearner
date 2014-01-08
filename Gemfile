@@ -61,3 +61,6 @@ gem 'whenever'
 gem 'squeel'
 
 gem 'thin'
+
+
+gem 'ace-rails-ap'

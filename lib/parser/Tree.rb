@@ -45,7 +45,7 @@ module Parser
     def next_element
       ignore_whitespace
       string = @text[@cursor..-1]
-      return nil if string.empty?
+      return nil if string.nil? or string.empty?
       #If we have a left parenthese then we create an other tree with the content of the parenthese
       if string[0] == '('
         sub_tree = Tree.new(string[1..-1])

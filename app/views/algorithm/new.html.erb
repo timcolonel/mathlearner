@@ -1,0 +1,33 @@
+<h1>Input new algorithm</h1>
+
+<style type="text/css" media="screen">
+    #editor {
+        position: relative;
+        height: 500px;
+    }
+
+</style>
+
+<%= form_tag create_algorithm_path do %>
+    <%= text_field_tag :name, @name %>
+
+    <%= text_area_tag :content, @code, :class => 'ace_content' %>
+    <div id="editor"><%= @code %></div>
+    <%= submit_tag 'create' %>
+<% end %>
+
+
+<script>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

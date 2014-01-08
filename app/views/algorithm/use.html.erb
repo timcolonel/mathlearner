@@ -1,0 +1,16 @@
+<h1>Use algorithm</h1>
+
+
+<%= form_tag use_algorithm_path, :method => :get do %>
+    <% id = nil
+       id = @algorithm.id unless @algorithm.nil?
+    %>
+    <%= select_tag 'algorithm', options_from_collection_for_select(Algorithm.all, :id, :name, id), :class => 'selectpicker' %>
+    <%= text_field_tag 'query', @query %>
+    <%= submit_tag 'Use', :class => 'btn btn-default' %>
+<% end %>
+
+<hr>
+Output: <br>
+
+<%= @parsed %>

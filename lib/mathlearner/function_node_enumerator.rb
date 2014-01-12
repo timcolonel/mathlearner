@@ -1,4 +1,4 @@
-module Parser
+module MathLearner
   class FunctionNodeEnumerator
     def initialize(node, skip_first = false)
       @node = node.clone

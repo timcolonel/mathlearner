@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Mathlearner::Application.load_tasks
+MathLearner::Application.load_tasks

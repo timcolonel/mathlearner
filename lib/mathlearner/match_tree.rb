@@ -1,4 +1,4 @@
-module Matcher
+module MathLearner
   class MatchTree
     attr_accessor :tree, :mapping, :enumerator
 

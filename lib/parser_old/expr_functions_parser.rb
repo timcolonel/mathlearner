@@ -1,4 +1,4 @@
-module Parser
+module MathLearner
   class ExprFunctionsParser
     def initialize(text)
       @text = text

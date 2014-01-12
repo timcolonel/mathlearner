@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Mathlearner::Application.config.secret_key_base = 'ef4d38d4ca909034cd2b653eece9fe7a72e33fcbb0d49709442dfcede221b834fdd31deb936efb1f0409a118af673028243688ee37c309f7ffd1671ac99e157c'
+MathLearner::Application.config.secret_key_base = 'ef4d38d4ca909034cd2b653eece9fe7a72e33fcbb0d49709442dfcede221b834fdd31deb936efb1f0409a118af673028243688ee37c309f7ffd1671ac99e157c'

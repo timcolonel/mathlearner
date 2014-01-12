@@ -1,4 +1,4 @@
-Mathlearner::Application.routes.draw do
+MathLearner::Application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   devise_for :users

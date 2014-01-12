@@ -1,4 +1,4 @@
-module Parser
+module MathLearner
   class ElementNode
     attr_accessor :element, :value
 

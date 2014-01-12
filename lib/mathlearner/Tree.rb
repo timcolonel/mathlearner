@@ -1,4 +1,4 @@
-module Parser
+module MathLearner
   class Tree
     attr_accessor :root, :cursor
 

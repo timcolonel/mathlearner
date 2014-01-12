@@ -1,4 +1,4 @@
-module Parser
+module MathLearner
   class FunctionNode
     attr_accessor :children, :function
 

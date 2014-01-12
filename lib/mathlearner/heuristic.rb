@@ -1,4 +1,4 @@
-module Matcher
+module MathLearner
 
   module HeuristicCoefficient
     DELTA_FUNCTION = 1
@@ -49,10 +49,10 @@ module Matcher
       result = 0
       current_functions = {}
       final_functions = {}
-      if current.is_a? Parser::FunctionNode
+      if current.is_a? MathLearner::FunctionNode
         current_functions = current.functions_count
       end
-      if final_functions.is_a? Parser::FunctionNode
+      if final_functions.is_a? MathLearner::FunctionNode
         final_functions = final.functions_count
       end
       result += compute_difference(current_functions, final_functions, DELTA_FUNCTION)

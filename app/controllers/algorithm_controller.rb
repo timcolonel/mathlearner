@@ -10,7 +10,7 @@ class AlgorithmController < ApplicationController
     if @code.nil? or @name.nil?
       render :new
     else
-      steps = Parser::AlgorithmParser.parse(@code)
+      steps = MathLearner::AlgorithmParser.parse(@code)
       algorithm = Algorithm.new
       algorithm.steps = steps
       algorithm.name = @name
@@ -27,23 +27,23 @@ class AlgorithmController < ApplicationController
       @algorithm = Algorithm.find(params[:algorithm])
       @query = params[:query]
 
-      query_tree = Parser::Tree.new(@query).parse
-      input = Parser::Tree.new(@algorithm.input.value).parse
-      output = Parser::Tree.new(@algorithm.outputs.first.value).parse
+      query_tree = MathLearner::Tree.new(@query).parse
+      input = MathLearner::Tree.new(@algorithm.input.value).parse
+      output = MathLearner::Tree.new(@algorithm.outputs.first.value).parse
 
-      matcher = Matcher::Matcher.new
+      matcher = MathLearner::Matcher.new
       match = matcher.match(query_tree, input)
       if match.nil?
         @parsed = "Wrong input format for algorithm `#{@algorithm.name}`, need: `#{@algorithm.input.value}`"
       else
-        @parsed = Matcher::Matcher.transform(output, matcher.mapping).tree.get_element.to_readable
+        @parsed = MathLearner::Matcher.transform(output, matcher.mapping).tree.get_element.to_readable
       end
     end
   end
 
   def match
-    input1 = Parser::Tree.new(params[:input1])
-    input2 = Parser::Tree.new(params[:input2])
+    input1 = MathLearner::Tree.new(params[:input1])
+    input2 = MathLearner::Tree.new(params[:input2])
 
     
   end

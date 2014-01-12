@@ -1,4 +1,4 @@
-module Matcher
+module MathLearner
   class FunctionMatchNode
     attr_accessor :function, :children
 
@@ -12,7 +12,7 @@ module Matcher
     end
 
     def get_element
-      node = Parser::FunctionNode.new(function)
+      node = MathLearner::FunctionNode.new(function)
       node.children = children.map do |k, v|
         if v.is_a? FunctionMatchNode
           v.get_element

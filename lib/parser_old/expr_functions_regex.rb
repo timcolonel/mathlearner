@@ -1,4 +1,4 @@
-module Parser
+module MathLearner
   class ExprFunctionsRegex
     def for(expr, speparator =nil, max=-1)
       separator ||= ''

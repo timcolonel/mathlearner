@@ -4,9 +4,9 @@ class WelcomeController < ApplicationController
     if @query.nil?
       return
     end
-    q_p = Parser::Tree.new(@query).parse
+    q_p = MathLearner::Tree.new(@query).parse
     @parsed = ''
-    enum = Parser::FunctionNodeEnumerator.new(q_p)
+    enum = MathLearner::FunctionNodeEnumerator.new(q_p)
     @parsed += enum.next.to_s + "\n"
     @parsed += enum.next.to_s + "\n"
     @parsed += enum.next.to_s + "\n"

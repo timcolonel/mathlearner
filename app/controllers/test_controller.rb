@@ -14,10 +14,10 @@ class TestController < ApplicationController
   end
 
   def compare(hash, exp1, final)
-    tree1 = Parser::Tree.new(exp1).parse
-    tree2 = Parser::Tree.new(final).parse
+    tree1 = MathLearner::Tree.new(exp1).parse
+    tree2 = MathLearner::Tree.new(final).parse
 
-    hash[exp1] = Matcher::Heuristic.compute(tree1, tree2)
+    hash[exp1] = MathLearner::Heuristic.compute(tree1, tree2)
 
   end
 end

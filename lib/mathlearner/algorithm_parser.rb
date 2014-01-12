@@ -1,4 +1,4 @@
-module Parser
+module MathLearner
 
   class AlgorithmParser
     def self.parse(content)

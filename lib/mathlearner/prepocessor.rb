@@ -1,4 +1,4 @@
-module Parser
+module MathLearner
   class Prepocessor
     def initialize(text)
       @text = text

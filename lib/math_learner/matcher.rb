@@ -3,12 +3,26 @@ module MathLearner
     attr_accessor :mapping
 
     def initialize()
+      reset()
+    end
+
+    def reset()
       @mapping = {}
+      @history = []
+    end
+
+    def last
+      @history.last
+    end
+
+    def input(element, pattern)
+      match = check_tree(element, pattern)
+      @history << match unless match.nil?
     end
 
     #Parse an input using the given pattern
     #@return Matchtree or nil if not matching
-    def input(element, pattern)
+    def check_tree(element, pattern)
       #Match is nil if both elemenent have different class(FunctionNode or ElementNode)
       return nil if element.class != pattern.class
       if pattern.is_a? MathLearner::FunctionNode
@@ -43,7 +57,6 @@ module MathLearner
 
     #Helper function
     def match_children(node, element, pattern)
-
       pattern.children.each_with_index do |pattern_child, index|
         element_child = element.children[index]
         match = input(element_child, pattern_child)
@@ -53,11 +66,17 @@ module MathLearner
           node.children[pattern_child]=match
         end
       end
-      return true
+      true
     end
 
+
+    def transform(destination)
+      match = map_to(destination)
+      @history << match unless match.nil?
+      match
+    end
     #Setup a matching of the destination using the previously setup mapping
-    def self.transform(destination)
+    def map_to(destination)
       if destination.is_a? MathLearner::FunctionNode
         node = FunctionMatchNode.new(destination.function)
         destination.children.each do |child|

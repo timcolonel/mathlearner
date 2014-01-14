@@ -2,10 +2,9 @@ module MathLearner
   class MatchTree
     attr_accessor :tree, :mapping, :enumerator
 
-    def initialize(tree, mapping, enumerator=nil)
+    def initialize(tree, mapping)
       @tree = tree
       @mapping = mapping
-      @enumerator = enumerator
     end
 
     #Check this data is valid by comparing the mapping to the given one
@@ -17,6 +16,10 @@ module MathLearner
         end
       end
       true
+    end
+
+    def value_tree
+      @tree.get_element
     end
 
     def to_s

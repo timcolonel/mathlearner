@@ -8,7 +8,7 @@ module MathLearner
       @cursor = 0
     end
 
-    def parse()
+    def parse
       next_node(0)
       @root
     end
@@ -16,8 +16,8 @@ module MathLearner
     def next_node(priority)
       element = next_element
       operator = next_element
-      if operator.nil?
-        node = {:node => element}
+      if operator.nil? #If the operator is nil mean its the end of reading for this tree
+        node = element
         @root = node if @root.nil?
         node
       else
@@ -27,15 +27,15 @@ module MathLearner
           node.children << element
           node.function = operator
           next_node = next_node(operator.priority)
-          node.children << next_node[:node]
-          {:node => node}
+          node.children << next_node
+          node
         else
           node.children << @root
           node.function = operator
           next_node = next_node(operator.priority)
-          node.children << next_node[:node]
+          node.children << next_node
           @root = node
-          {:node => element, :root => node}
+          element
         end
 
       end
@@ -50,7 +50,7 @@ module MathLearner
       if string[0] == '('
         sub_tree = Tree.new(string[1..-1])
         sub_tree.parse
-        @cursor += sub_tree.cursor
+        @cursor += sub_tree.cursor + 1
         return sub_tree.root
       end
       #if we have a closing parentheses it's the end of the word(it's been preporcess before so this imply we have
@@ -65,7 +65,7 @@ module MathLearner
         return operator
       end
       index = 0
-      until index >= string.length or string[index] == ')' or string[index].input(Regex::operator)
+      until index >= string.length or string[index] == ')' or string[index].match(Regex::operator)
         index += 1
       end
       @cursor += index
@@ -87,21 +87,21 @@ module MathLearner
 
     def get_operator(string)
       Operator.all.each do |operator|
-        return operator if string.input(Regexp.new("^#{operator.pattern}"))
+        return operator if string.match(Regexp.new("^#{operator.pattern}"))
       end
       nil
     end
 
     def get_function(string)
       Function.all.each do |function|
-        return function if string.input(Regexp.new(function.pattern))
+        return function if string.match(Regexp.new(function.pattern))
       end
       nil
     end
 
     def get_element(string)
       Element.all.each do |element|
-        return element if string.input(Regexp.new "^#{element.pattern}")
+        return element if string.match(Regexp.new "^#{element.pattern}")
       end
     end
 

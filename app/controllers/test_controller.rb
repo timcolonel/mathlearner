@@ -1,10 +1,9 @@
 class TestController < ApplicationController
   def heuristic
-    final = 'b*a+a*c'
-    @comparaisons = {}
+    @comparisons = {}
     Test::HeuristicDataFinal.all.each do |final|
       hash = {}
-      @comparaisons[final.value]=hash
+      @comparisons[final.value]=hash
       compare(hash, final.value, final.value)
       final.expressions.each do |exp|
 

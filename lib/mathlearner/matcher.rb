@@ -6,7 +6,9 @@ module MathLearner
       @mapping = {}
     end
 
-    def match(element, pattern)
+    #Parse an input using the given pattern
+    #@return Matchtree or nil if not matching
+    def input(element, pattern)
       #Match is nil if both elemenent have different class(FunctionNode or ElementNode)
       return nil if element.class != pattern.class
       if pattern.is_a? MathLearner::FunctionNode
@@ -39,11 +41,12 @@ module MathLearner
       end
     end
 
+    #Helper function
     def match_children(node, element, pattern)
 
       pattern.children.each_with_index do |pattern_child, index|
         element_child = element.children[index]
-        match = match(element_child, pattern_child)
+        match = input(element_child, pattern_child)
         if match.nil?
           return false
         else
@@ -53,28 +56,24 @@ module MathLearner
       return true
     end
 
-    #Return matchdata
-    def self.transform(destination, matchmapping)
+    #Setup a matching of the destination using the previously setup mapping
+    def self.transform(destination)
       if destination.is_a? MathLearner::FunctionNode
         node = FunctionMatchNode.new(destination.function)
         destination.children.each do |child|
-          trans= transform(child, matchmapping)
+          trans= transform(child)
           node.children[child] = trans.tree
         end
-        return MatchTree.new(node, matchmapping)
+        return MatchTree.new(node, @mapping)
       elsif destination.is_a? MathLearner::ElementNode
-        match = destination.extract_map(matchmapping)
-        raise ArgumentError, "Cannot find value for this variable '#{destination.value}' in mapping #{matchmapping}" if match.nil?
+        match = destination.get_value(@mapping)
+        raise ArgumentError, "Cannot find value for this variable '#{destination.value}' in mapping #{@mapping}" if match.nil?
         element = destination.clone
         element.value = match
-        return MatchTree.new(element, matchmapping)
+        return MatchTree.new(element, @mapping)
       else
         nil
       end
-
-    end
-
-    def compute_similarity(current, final)
 
     end
   end

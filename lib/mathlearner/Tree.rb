@@ -65,7 +65,7 @@ module MathLearner
         return operator
       end
       index = 0
-      until index >= string.length or string[index] == ')' or string[index].match(Regex::operator)
+      until index >= string.length or string[index] == ')' or string[index].input(Regex::operator)
         index += 1
       end
       @cursor += index
@@ -87,21 +87,21 @@ module MathLearner
 
     def get_operator(string)
       Operator.all.each do |operator|
-        return operator if string.match(Regexp.new("^#{operator.pattern}"))
+        return operator if string.input(Regexp.new("^#{operator.pattern}"))
       end
       nil
     end
 
     def get_function(string)
       Function.all.each do |function|
-        return function if string.match(Regexp.new(function.pattern))
+        return function if string.input(Regexp.new(function.pattern))
       end
       nil
     end
 
     def get_element(string)
       Element.all.each do |element|
-        return element if string.match(Regexp.new "^#{element.pattern}")
+        return element if string.input(Regexp.new "^#{element.pattern}")
       end
     end
 

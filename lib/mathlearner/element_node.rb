@@ -7,7 +7,7 @@ module MathLearner
       @value = value
     end
 
-    def extract_map(mapping)
+    def get_value(mapping)
       return mapping[value.to_s]
     end
 

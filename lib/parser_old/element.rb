@@ -28,7 +28,7 @@ module ParserOld
           next
         end
         puts "check #{@text} -- #{structure.formattable} --- #{build_regex(structure.pattern)}"
-        if @text.match(build_regex(structure.pattern))
+        if @text.input(build_regex(structure.pattern))
           puts 'match-------------'
           add = true
           struct_match.each do |compare| #Only add the deepest inheritance

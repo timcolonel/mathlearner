@@ -5,7 +5,7 @@ class Algorithm < ActiveRecord::Base
 
 
   def match(tree)
-    MathLearner::Matcher.match(tree, input.tree)
+    MathLearner::Matcher.input(tree, input.tree)
   end
 
   def use(tree)

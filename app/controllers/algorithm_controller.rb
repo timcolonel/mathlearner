@@ -32,7 +32,7 @@ class AlgorithmController < ApplicationController
       output = MathLearner::Tree.new(@algorithm.outputs.first.value).parse
 
       matcher = MathLearner::Matcher.new
-      match = matcher.match(query_tree, input)
+      match = matcher.input(query_tree, input)
       if match.nil?
         @parsed = "Wrong input format for algorithm `#{@algorithm.name}`, need: `#{@algorithm.input.value}`"
       else

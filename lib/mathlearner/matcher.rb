@@ -22,8 +22,6 @@ module MathLearner
         else
           return nil
         end
-
-
       elsif pattern.is_a? MathLearner::ElementNode
 
         if pattern.element.match?(element.element)

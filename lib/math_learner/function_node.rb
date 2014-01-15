@@ -49,5 +49,13 @@ module MathLearner
     def is_element?
       false
     end
+
+    def ==(other)
+      return false if function != other.function
+      @children.each_with_index do |child,i|
+        return false if child != other.children[i]
+      end
+      true
+    end
   end
 end

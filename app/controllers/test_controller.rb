@@ -10,6 +10,12 @@ class TestController < ApplicationController
         compare(hash, exp.value, final.value)
       end
     end
+
+    tree1 = MathLearner::Tree.new('a*(b+c)').parse
+    tree2 = MathLearner::Tree.new('a*b+a*c').parse
+
+
+    @transformation = MathLearner::Transform.transform(tree1, tree2)
   end
 
   def compare(hash, exp1, final)

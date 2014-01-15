@@ -4,9 +4,21 @@
       <div>
         <ul>
           <% l.each do |k, v| %>
-            <li> <%= k %> - <%= v %></li>
+              <li> <%= k %> - <%= v %></li>
           <% end %>
         </ul>
       </div>
     </div>
 <% end %>
+
+History of the transformation :lol:</br>
+<% if @transformation.nil? %>
+    cannot transform sorry
+<% else %>
+    <ul>
+      <% @transformation.each do |step| %>
+          <li><%= step.to_readable %></li>
+      <% end %>
+    </ul>
+<% end %>
+<br>

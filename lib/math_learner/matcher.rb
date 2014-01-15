@@ -11,6 +11,7 @@ module MathLearner
       @history = []
     end
 
+    #Rrturn the last match tree created(use to get output after all step have been precess)
     def last
       @history.last
     end

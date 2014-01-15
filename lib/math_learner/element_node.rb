@@ -30,5 +30,9 @@ module MathLearner
     def is_function?
       false
     end
+
+    def ==(other)
+      value == other.value and element == other.element
+    end
   end
 end

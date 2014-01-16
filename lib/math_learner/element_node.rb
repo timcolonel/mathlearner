@@ -31,6 +31,9 @@ module MathLearner
       false
     end
 
+    def match_expr?
+      element.match_expr
+    end
     def ==(other)
       value == other.value and element == other.element
     end

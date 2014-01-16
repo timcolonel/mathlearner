@@ -3,7 +3,6 @@ class Element < ActiveRecord::Base
 
   def match?(subelement)
     subelement == self or sub_match.include?(subelement)
-
   end
   def to_s
     name

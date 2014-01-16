@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140107174142) do
+ActiveRecord::Schema.define(version: 20140116193553) do
 
   create_table "algorithm_sources", force: true do |t|
     t.text     "content"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140107174142) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pattern"
+    t.boolean  "match_expr"
   end
 
   create_table "expressions", force: true do |t|

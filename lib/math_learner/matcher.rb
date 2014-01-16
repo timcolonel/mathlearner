@@ -25,9 +25,8 @@ module MathLearner
     #@return Matchtree or nil if not matching
     def check_tree(element, pattern)
       #Match is nil if both elemenent have different class(FunctionNode or ElementNode)
-      return nil if element.class != pattern.class
+      return nil if element.is_element? and pattern.is_function?
       if pattern.is_a? MathLearner::FunctionNode
-
         #If the function is not the same or different children return fail
         return nil if pattern.function != element.function
         return nil if pattern.children.size != element.children.size
@@ -39,21 +38,41 @@ module MathLearner
         else
           return nil
         end
-      elsif pattern.is_a? MathLearner::ElementNode
+      elsif pattern.is_element?
+        #Case where the pattern is an element that can be an expression ($)
+        if element.is_function?
+          if pattern.match_expr? #if it can read expression then match it otherwise it doesn't match
+            if map_element(element, pattern)
+              return element
+            else
+              return nil
+            end
+          else
+            nil
+          end
+        else
+          if pattern.element.match?(element.element)
+            if map_element(element, pattern)
+              return element
+            else
+              return nil
+            end
 
-        if pattern.element.match?(element.element)
-          val = @mapping[pattern.value]
-          if not val.nil? and val.value != element.value
+          else
             return nil
           end
-          if val.nil?
-            @mapping[pattern.value] = element
-          end
-          return element
-        else
-          return nil
         end
       end
+    end
+
+    def map_element(element, pattern)
+      val = @mapping[pattern.value]
+      if val.nil?
+        @mapping[pattern.value] = element
+      elsif val != element
+        return false
+      end
+      true
     end
 
     #Helper function
@@ -76,6 +95,7 @@ module MathLearner
       @history << match unless match.nil?
       match
     end
+
     #Setup a matching of the destination using the previously setup mapping
     def map_to(destination)
       if destination.is_a? MathLearner::FunctionNode

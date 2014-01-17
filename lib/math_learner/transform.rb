@@ -50,9 +50,10 @@ module MathLearner
       puts 'Use algo on: ' + node.to_readable
       unless matcher.nil?
         output = matcher.last.value_tree
-        new_h = Heuristic.compute(root, @goal)
         tmp =node.clone
+        puts ' old : ' + @current.to_readable
         node.set(output)
+        new_h = Heuristic.compute(root, @goal)
         puts 'worked, is ' + @h.to_s + ' < ' + new_h.to_s + ' ' + root.to_readable
         if new_h >= @h and not @history.include?(root)
           @h = new_h

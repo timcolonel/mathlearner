@@ -12,15 +12,19 @@ module MathLearner
   class Heuristic
     include HeuristicCoefficient
 
-    def self.compute(current, final)
+    def self.compute(current, final, can_check_element = true)
 
       result = 0
       result += compute_function(current, final)
       if current.function == final.function
         result += SAME_FUNCTION
+        can_check_element = false
+      end
+      if can_check_element
+        result += check_element(current, final)
       end
 
-      result += check_element(current, final)
+      result += compute_total_element(current, final)
 
       c_children_size = 0
       f_children_size = 0
@@ -33,7 +37,7 @@ module MathLearner
           if i >= c_children_size
             break
           end
-          result += compute(current.children[i], child) / f_children_size * CHILD
+          result += compute(current.children[i], child, can_check_element) / f_children_size * CHILD
         end
       end
       if c_children_size != f_children_size
@@ -52,7 +56,7 @@ module MathLearner
       if current.is_a? MathLearner::FunctionNode
         current_functions = current.functions_count
       end
-      if final_functions.is_a? MathLearner::FunctionNode
+      if final.is_a? MathLearner::FunctionNode
         final_functions = final.functions_count
       end
       result += compute_difference(current_functions, final_functions, DELTA_FUNCTION)
@@ -73,11 +77,25 @@ module MathLearner
     end
 
     def self.check_element(current, final)
-      result  = 0
+      result = 0
       if current.is_element? and final.is_element?
         result += SAME_ELEMENT if current.element == final.element
         result += SAME_ELEMENT_VALUE if current.value == final.value
       end
+      result
+    end
+
+    def self.compute_total_element(current, final)
+      result = 0
+      current_elements = {}
+      final_elements = {}
+      if current.is_a? MathLearner::FunctionNode
+        current_elements = current.elements_count
+      end
+      if final.is_a? MathLearner::FunctionNode
+        final_elements = final.elements_count
+      end
+      result += compute_difference(current_elements, final_elements, DELTA_FUNCTION)
       result
     end
   end

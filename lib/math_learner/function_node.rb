@@ -43,6 +43,34 @@ module MathLearner
       functions
     end
 
+    def all_elements
+      elements = []
+      children.each do |child|
+        if child.is_a? FunctionNode
+          functions += child.all_elements
+        elsif child.is_element?
+          elements << child
+        end
+      end
+      elements
+    end
+
+    def elements_count
+      elements = {}
+      children.each do |child|
+        if child.is_a? FunctionNode
+          child.elements_count.each do |element|
+            elements[element] ||= 0
+            elements[element] += 1
+          end
+        elsif child.is_element?
+          elements[child] ||= 0
+          elements[child] += 1
+        end
+      end
+      elements
+    end
+
     def is_function?
       true
     end

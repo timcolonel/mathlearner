@@ -57,5 +57,10 @@ module MathLearner
       end
       true
     end
+
+    def set(function_node)
+      @children = function_node.children
+      @function = function_node.function
+    end
   end
 end

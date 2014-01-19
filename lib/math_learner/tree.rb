@@ -13,6 +13,13 @@ module MathLearner
     def parse
       #next_node(0)
       element = next_element
+      #Take care of -1, 5*-3,..
+      if element.is_a? Operator and element.single_use?
+        node = FunctionNode.new
+        node.function = element
+        node.children <<  next_element
+        element =  node
+      end
       operator = next_element
       if operator.nil?
         puts 'End; ' + element.to_readable

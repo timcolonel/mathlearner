@@ -11,13 +11,22 @@ module MathLearner
     def permutation
       FunctionNodeEnumerator.new(self)
     end
-    
+
     def to_s
       "#{@function.to_s}(#{@children.map { |x| x.to_s }.join(',')})"
     end
 
     def to_readable
-      "(#{@children.map { |x| x.to_readable }.join(@function.to_s)})"
+      if @function.is_a? Operator
+        if @children.size == 1
+          "(#{@function.to_s}#{@children.first.to_readable})"
+        else
+        "(#{@children.map { |x| x.to_readable }.join(@function.to_s)})"
+        end
+
+      else
+        "#{@function.to_s}(#{@children.map { |x| x.to_readable }.join(',')})"
+      end
     end
 
     def all_functions
@@ -74,13 +83,14 @@ module MathLearner
     def is_function?
       true
     end
+
     def is_element?
       false
     end
 
     def ==(other)
       return false if function != other.function
-      @children.each_with_index do |child,i|
+      @children.each_with_index do |child, i|
         return false if child != other.children[i]
       end
       true

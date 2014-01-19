@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116193553) do
+ActiveRecord::Schema.define(version: 20140119180714) do
 
   create_table "algorithm_sources", force: true do |t|
     t.text     "content"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140116193553) do
     t.integer  "priority"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "single_use"
   end
 
   create_table "rails_admin_histories", force: true do |t|

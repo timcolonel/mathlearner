@@ -16,12 +16,24 @@ module MathLearner
       "#{@function.to_s}(#{@children.map { |x| x.to_s }.join(',')})"
     end
 
+    def clone_nested
+      clone = FunctionNode.new(function)
+      children.each do |child|
+        if child.is_function?
+          clone.children << child.clone_nested
+        else
+          clone.children << child.clone
+        end
+      end
+      clone
+    end
+
     def to_readable
       if @function.is_a? Operator
         if @children.size == 1
           "(#{@function.to_s}#{@children.first.to_readable})"
         else
-        "(#{@children.map { |x| x.to_readable }.join(@function.to_s)})"
+          "(#{@children.map { |x| x.to_readable }.join(@function.to_s)})"
         end
 
       else

@@ -27,8 +27,7 @@ class AlgorithmController < ApplicationController
       @algorithm = Algorithm.find(params[:algorithm])
       @query = params[:query]
       query_tree = MathLearner::Tree.new(@query).parse
-      match = nil
-#      match = @algorithm.use(query_tree)
+      match = @algorithm.use(query_tree)
       if match.nil?
         @parsed = "Wrong input format for algorithm `#{@algorithm.name}`, need: `#{@algorithm.input.value}`, input is `#{query_tree.to_readable}`"
       else

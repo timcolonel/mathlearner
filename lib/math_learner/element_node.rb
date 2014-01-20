@@ -35,7 +35,7 @@ module MathLearner
       element.match_expr
     end
     def ==(other)
-      value == other.value and element == other.element
+      other.is_a? ElementNode and value == other.value and element == other.element
     end
   end
 end

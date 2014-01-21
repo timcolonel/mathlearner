@@ -31,9 +31,16 @@ module MathLearner
     def to_readable
       if @function.is_a? Operator
         if @children.size == 1
-          "(#{@function.to_s}#{@children.first.to_readable})"
+          "#{@function.to_s}#{@children.first.to_readable}"
         else
-          "(#{@children.map { |x| x.to_readable }.join(@function.to_s)})"
+          "#{@children.map { |x|
+            #Only add parenthesise when it's needed, ex: 5*(3+2) but not for 2+5*3
+            if x.is_function? and x.function.priority < function.priority
+              "(#{x.to_readable})"
+            else
+              x.to_readable
+            end
+          }.join(@function.to_s)}"
         end
 
       else

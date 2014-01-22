@@ -23,4 +23,8 @@ class Algorithm < ActiveRecord::Base
     end
     matcher
   end
+
+  def to_s
+    "#{name}, #{input.value}"
+  end
 end

@@ -15,10 +15,13 @@ History of the transformation :lol:</br>
 <% if @transformation.nil? %>
     cannot transform sorry
 <% else %>
-    <ul>
+    <div>
       <% @transformation.each do |step| %>
-          <li><%= step.to_readable %></li>
+          <div>
+            <div style="width: 300px;display: inline-block"><%= step[:node].to_readable %></div>
+            <div style="width: 400px;display: inline-block"><%= step[:operation] %></div>
+          </div>
       <% end %>
-    </ul>
+    </div>
 <% end %>
 <br>

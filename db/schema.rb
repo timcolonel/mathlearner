@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119180714) do
+ActiveRecord::Schema.define(version: 20140123172522) do
 
   create_table "algorithm_sources", force: true do |t|
     t.text     "content"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140119180714) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "display_name"
+    t.text     "compute_algorithm"
   end
 
   create_table "operators", force: true do |t|
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20140119180714) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "single_use"
+    t.text     "compute_algorithm"
   end
 
   create_table "rails_admin_histories", force: true do |t|

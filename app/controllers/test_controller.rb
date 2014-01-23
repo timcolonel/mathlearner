@@ -11,8 +11,10 @@ class TestController < ApplicationController
       end
     end
 
-    tree1 = MathLearner::Tree.new('a*(b-c)').parse
-    tree2 = MathLearner::Tree.new('(-c)*a+a*b)').parse
+    @start = 'a*(b-c)'
+    @end = '(-c)*a+a*b'
+    tree1 = MathLearner::Tree.new(@start).parse
+    tree2 = MathLearner::Tree.new(@end).parse
 
     @transformation = MathLearner::Transform.new(tree1, tree2).transform
   end

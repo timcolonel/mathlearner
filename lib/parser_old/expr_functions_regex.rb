@@ -3,7 +3,7 @@ module MathLearner
     def for(expr, speparator =nil, max=-1)
       separator ||= ''
       result = ''
-      if max = -1
+      if max == -1
         result = "(#{expr}\\#{separator})*\\#{speparator}${expr}"
       else
         (0...max).each do |i|
